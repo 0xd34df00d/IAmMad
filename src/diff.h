@@ -20,6 +20,7 @@ struct BinaryFunctionWrapper;
 
 using Add = BinaryFunctionWrapper<BinaryFunction::Add>;
 using Mul = BinaryFunctionWrapper<BinaryFunction::Mul>;
+using Div = BinaryFunctionWrapper<BinaryFunction::Div>;
 
 template<typename NodeClass, typename... Args>
 struct Node;
@@ -158,6 +159,30 @@ struct BinaryFunctionWrapper<BinaryFunction::Mul>
 				Node<Mul,
 					Left,
 					typename Right::template Derivative_t<Family, Index>
+				>
+			>;
+};
+
+template<>
+struct BinaryFunctionWrapper<BinaryFunction::Div>
+{
+	template<char Family, int Index, typename U, typename V>
+	using Derivative_t = Node<Div,
+				Node<Add,
+					Node<Mul,
+						typename U::template Derivative_t<Family, Index>,
+						V
+					>,
+					Node<Neg,
+						Node<Mul,
+							U,
+							typename V::template Derivative_t<Family, Index>
+						>
+					>
+				>,
+				Node<Mul,
+					V,
+					V
 				>
 			>;
 };

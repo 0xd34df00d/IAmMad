@@ -51,7 +51,8 @@ double EvalUnary<UnaryFunction::Neg> (double value)
 enum class BinaryFunction
 {
 	Add,
-	Mul
+	Mul,
+	Div
 };
 
 constexpr bool IsInfix (BinaryFunction bf)
@@ -71,6 +72,8 @@ std::string FunctionName (BinaryFunction bf)
 		return "+";
 	case BinaryFunction::Mul:
 		return "*";
+	case BinaryFunction::Div:
+		return "/";
 	}
 }
 
@@ -87,4 +90,10 @@ template<>
 double EvalBinary<BinaryFunction::Mul> (double left, double right)
 {
 	return left * right;
+}
+
+template<>
+double EvalBinary<BinaryFunction::Div> (double left, double right)
+{
+	return left / right;
 }
