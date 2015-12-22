@@ -18,12 +18,12 @@ std::string FunctionName (UnaryFunction uf)
 {
 	switch (uf)
 	{
-		case UnaryFunction::Sin:
-			return "sin";
-		case UnaryFunction::Cos:
-			return "cos";
-		case UnaryFunction::Neg:
-			return "-";
+	case UnaryFunction::Sin:
+		return "sin";
+	case UnaryFunction::Cos:
+		return "cos";
+	case UnaryFunction::Neg:
+		return "-";
 	}
 }
 

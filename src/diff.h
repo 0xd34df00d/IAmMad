@@ -49,8 +49,8 @@ struct Node<UnaryFunctionWrapper<UF>, Node<ChildArgs...>>
 
 	template<char FPrime, int IPrime>
 	using Derivative_t = Node<Mul,
-		  typename UnaryFunctionWrapper<UF>::template Derivative_t<Child_t>,
-		  typename Node<ChildArgs...>::template Derivative_t<FPrime, IPrime>>;
+			typename UnaryFunctionWrapper<UF>::template Derivative_t<Child_t>,
+			typename Node<ChildArgs...>::template Derivative_t<FPrime, IPrime>>;
 
 	static std::string Print ()
 	{
@@ -81,8 +81,8 @@ struct Node<BinaryFunctionWrapper<BF>, Node<FirstChildArgs...>, Node<SecondChild
 		const auto& func = FunctionName (BF);
 
 		return IsInfix (BF) ?
-			firstArg + " " + func + " " + secondArg :
-			func + "(" + firstArg + ", " + secondArg + ")";
+				firstArg + " " + func + " " + secondArg :
+				func + "(" + firstArg + ", " + secondArg + ")";
 	}
 
 	template<typename Vec>
@@ -100,8 +100,8 @@ struct Node<Variable<Family, Index>>
 {
 	template<char FPrime, int IPrime>
 	using Derivative_t = std::conditional_t<FPrime == Family && IPrime == Index,
-		  Node<Number<1>>,
-		  Node<Number<0>>>;
+			Node<Number<1>>,
+			Node<Number<0>>>;
 
 	static std::string Print ()
 	{
@@ -141,9 +141,9 @@ struct BinaryFunctionWrapper<BinaryFunction::Add>
 {
 	template<char Family, int Index, typename Left, typename Right>
 	using Derivative_t = Node<Add,
-			  typename Left::template Derivative_t<Family, Index>,
-			  typename Right::template Derivative_t<Family, Index>
-		  >;
+				typename Left::template Derivative_t<Family, Index>,
+				typename Right::template Derivative_t<Family, Index>
+			>;
 };
 
 template<>
@@ -151,13 +151,13 @@ struct BinaryFunctionWrapper<BinaryFunction::Mul>
 {
 	template<char Family, int Index, typename Left, typename Right>
 	using Derivative_t = Node<Add,
-			  Node<Mul,
-				  typename Left::template Derivative_t<Family, Index>,
-				  Right
-			  >,
-			  Node<Mul,
-				  Left,
-				  typename Right::template Derivative_t<Family, Index>
-			  >
-		  >;
+				Node<Mul,
+					typename Left::template Derivative_t<Family, Index>,
+					Right
+				>,
+				Node<Mul,
+					Left,
+					typename Right::template Derivative_t<Family, Index>
+				>
+			>;
 };
