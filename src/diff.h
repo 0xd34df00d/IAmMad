@@ -14,6 +14,7 @@ struct UnaryFunctionWrapper;
 using Sin = UnaryFunctionWrapper<UnaryFunction::Sin>;
 using Cos = UnaryFunctionWrapper<UnaryFunction::Cos>;
 using Neg = UnaryFunctionWrapper<UnaryFunction::Neg>;
+using Ln = UnaryFunctionWrapper<UnaryFunction::Ln>;
 
 template<BinaryFunction BF>
 struct BinaryFunctionWrapper;
@@ -128,6 +129,13 @@ struct UnaryFunctionWrapper<UnaryFunction::Cos>
 {
 	template<typename Child>
 	using Derivative_t = Node<Neg, Node<Sin, Child>>;
+};
+
+template<>
+struct UnaryFunctionWrapper<UnaryFunction::Ln>
+{
+	template<typename Child>
+	using Derivative_t = Node<Div, Node<Number<1>>, Child>;
 };
 
 template<>

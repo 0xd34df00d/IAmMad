@@ -11,6 +11,7 @@ enum class UnaryFunction
 {
 	Sin,
 	Cos,
+	Ln,
 	Neg
 };
 
@@ -22,6 +23,8 @@ std::string FunctionName (UnaryFunction uf)
 		return "sin";
 	case UnaryFunction::Cos:
 		return "cos";
+	case UnaryFunction::Ln:
+		return "ln";
 	case UnaryFunction::Neg:
 		return "-";
 	}
@@ -40,6 +43,12 @@ template<>
 double EvalUnary<UnaryFunction::Cos> (double value)
 {
 	return std::cos (value);
+}
+
+template<>
+double EvalUnary<UnaryFunction::Ln> (double value)
+{
+	return std::log (value);
 }
 
 template<>
