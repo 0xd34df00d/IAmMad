@@ -1,6 +1,7 @@
 #pragma once
 
 #include "diff.h"
+#include "simplify.h"
 
 namespace Parse
 {
@@ -44,10 +45,12 @@ namespace Parse
 
 	void TestParses ()
 	{
-		std::cout << decltype (x0 * y0)::Derivative_t<'x', 0>::Print () << std::endl;
-		std::cout << decltype (Sin (x0))::Derivative_t<'x', 0>::Print () << std::endl;
-		std::cout << decltype (Ln (x0))::Derivative_t<'x', 0>::Print () << std::endl;
-		std::cout << decltype (_1 / x0)::Derivative_t<'x', 0>::Print () << std::endl;
-		std::cout << decltype (Sin (x0) * Cos (y0))::Derivative_t<'x', 0>::Print () << std::endl;
+		using Simplify::Simplify_t;
+
+		std::cout << Simplify_t<decltype (x0 * y0)::Derivative_t<'x', 0>>::Print () << std::endl;
+		std::cout << Simplify_t<decltype (Sin (x0))::Derivative_t<'x', 0>>::Print () << std::endl;
+		std::cout << Simplify_t<decltype (Ln (x0))::Derivative_t<'x', 0>>::Print () << std::endl;
+		std::cout << Simplify_t<decltype (_1 / x0)::Derivative_t<'x', 0>>::Print () << std::endl;
+		std::cout << Simplify_t<decltype (Sin (x0) * Cos (y0))::Derivative_t<'x', 0>>::Print () << std::endl;
 	}
 }
