@@ -91,6 +91,8 @@ namespace Params
 			{
 				return {};
 			}
+
+			using value_type = ValueType;
 		} dummy;
 		return dummy;
 	}
