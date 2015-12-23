@@ -8,17 +8,29 @@ namespace Parse
 	template<char Family, int Index>
 	Node<Variable<Family, Index>> Var {};
 
-	Node<Variable<'x', 0>> x0;
-	Node<Variable<'x', 1>> x1;
-	Node<Variable<'x', 2>> x2;
+	using X0 = Node<Variable<'x', 0>>;
+	using X1 = Node<Variable<'x', 1>>;
+	using X2 = Node<Variable<'x', 2>>;
 
-	Node<Variable<'y', 0>> y0;
-	Node<Variable<'y', 1>> y1;
-	Node<Variable<'y', 2>> y2;
+	using Y0 = Node<Variable<'y', 0>>;
+	using Y1 = Node<Variable<'y', 1>>;
+	using Y2 = Node<Variable<'y', 2>>;
 
-	Node<Variable<'w', 0>> w0;
-	Node<Variable<'w', 1>> w1;
-	Node<Variable<'w', 2>> w2;
+	using W0 = Node<Variable<'w', 0>>;
+	using W1 = Node<Variable<'w', 1>>;
+	using W2 = Node<Variable<'w', 2>>;
+
+	X0 x0;
+	X1 x1;
+	X2 x2;
+
+	Y0 y0;
+	Y1 y1;
+	Y2 y2;
+
+	W0 w0;
+	W1 w1;
+	W2 w2;
 
 	Node<Number<1>> _1;
 
