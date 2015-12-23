@@ -34,6 +34,9 @@ namespace Parse
 	template<typename T1, typename T2>
 	Node<Div, T1, T2> operator/ (T1, T2);
 
+	template<typename T1, typename T2>
+	Node<Add, T1, Node<Neg, T2>> operator- (T1, T2);
+
 	template<typename T>
 	Node<Neg, T> operator- (T);
 
