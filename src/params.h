@@ -36,4 +36,27 @@ namespace Params
 	{
 		static constexpr size_t Value = 0;
 	};
+
+	namespace detail
+	{
+		template<typename Vec>
+		void BuildValuesImpl (Vec&)
+		{
+		}
+
+		template<char Family, int Index, typename Vec, typename... Tail>
+		void BuildValuesImpl (Vec& vec, Node<Variable<Family, Index>>, double value, Tail&&... tail)
+		{
+			AddValue<Family, Index> (vec, value);
+			BuildValuesImpl (vec, std::forward<Tail> (tail)...);
+		}
+	}
+
+	template<typename FT, typename... Tail>
+	auto BuildValues (Tail&&... tail)
+	{
+		std::array<double, MaxSize<FT>::Value + 1> vec {{ 0 }};
+		detail::BuildValuesImpl (vec, std::forward<Tail> (tail)...);
+		return vec;
+	}
 }
