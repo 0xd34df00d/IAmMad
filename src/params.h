@@ -4,8 +4,8 @@
 
 namespace Params
 {
-	template<char Family, int Index, typename Vec>
-	void AddValue (Vec& vec, double value)
+	template<char Family, int Index, typename Vec, typename T>
+	void AddValue (Vec& vec, T value)
 	{
 		vec [BuildIndex<Family, Index> ()] = value;
 	}
@@ -44,18 +44,18 @@ namespace Params
 		{
 		}
 
-		template<char Family, int Index, typename Vec, typename... Tail>
-		void BuildValuesImpl (Vec& vec, Node<Variable<Family, Index>>, double value, Tail&&... tail)
+		template<char Family, int Index, typename T, typename Vec, typename... Tail>
+		void BuildValuesImpl (Vec& vec, Node<Variable<Family, Index>>, T value, Tail&&... tail)
 		{
 			AddValue<Family, Index> (vec, value);
 			BuildValuesImpl (vec, std::forward<Tail> (tail)...);
 		}
 	}
 
-	template<typename FT, typename... Tail>
+	template<typename ArrT, typename FT, typename... Tail>
 	auto BuildValues (Tail&&... tail)
 	{
-		std::array<double, MaxSize<FT>::Value + 1> vec {{ 0 }};
+		std::array<ArrT, MaxSize<FT>::Value + 1> vec {{ 0 }};
 		detail::BuildValuesImpl (vec, std::forward<Tail> (tail)...);
 		return vec;
 	}

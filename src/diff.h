@@ -22,8 +22,8 @@ struct Node<Number<N>>
 		return std::to_string (N);
 	}
 
-	template<typename Vec>
-	static double Eval (const Vec&)
+	template<typename T, typename Vec>
+	static T Eval (const Vec&)
 	{
 		return N;
 	}
@@ -44,10 +44,10 @@ struct Node<UnaryFunctionWrapper<UF>, Node<ChildArgs...>>
 		return FunctionName (UF) + "(" + Node<ChildArgs...>::Print () + ")";
 	}
 
-	template<typename Vec>
-	static double Eval (const Vec& values)
+	template<typename T, typename Vec>
+	static T Eval (const Vec& values)
 	{
-		const auto child = Child_t::Eval (values);
+		const auto child = Child_t::template Eval<T> (values);
 		return EvalUnary (UnaryFunctionWrapper<UF> {}, child);
 	}
 };
@@ -72,11 +72,11 @@ struct Node<BinaryFunctionWrapper<BF>, Node<FirstChildArgs...>, Node<SecondChild
 				func + "(" + firstArg + ", " + secondArg + ")";
 	}
 
-	template<typename Vec>
-	static double Eval (const Vec& values)
+	template<typename T, typename Vec>
+	static T Eval (const Vec& values)
 	{
-		const auto left = Left_t::Eval (values);
-		const auto right = Right_t::Eval (values);
+		const auto left = Left_t::template Eval<T> (values);
+		const auto right = Right_t::template Eval<T> (values);
 
 		return EvalBinary (BinaryFunctionWrapper<BF> {}, left, right);
 	}
@@ -95,8 +95,8 @@ struct Node<Variable<Family, Index>>
 		return std::string { Family, '_' } + std::to_string (Index);
 	}
 
-	template<typename Vec>
-	static double Eval (const Vec& values)
+	template<typename T, typename Vec>
+	static T Eval (const Vec& values)
 	{
 		return values [BuildIndex<Family, Index> ()];
 	}
