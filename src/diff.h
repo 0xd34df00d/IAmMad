@@ -98,7 +98,7 @@ struct Node<Variable<Family, Index>>
 	template<typename Vec>
 	static typename Vec::value_type Eval (const Vec& values)
 	{
-		return values [BuildIndex<Family, Index> ()];
+		return values (Node {});
 	}
 };
 
