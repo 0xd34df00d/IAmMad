@@ -102,6 +102,18 @@ struct Node<Variable<Family, Index>>
 	}
 };
 
+template<typename Node, typename Var>
+struct VarDerivative;
+
+template<typename Expr, char Family, int Index>
+struct VarDerivative<Expr, Node<Variable<Family, Index>>>
+{
+	using Result_t = typename Expr::template Derivative_t<Family, Index>;
+};
+
+template<typename Node, typename Var>
+using VarDerivative_t = typename VarDerivative<Node, Var>::Result_t;
+
 template<>
 struct UnaryFunctionWrapper<UnaryFunction::Sin>
 {
