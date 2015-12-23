@@ -48,7 +48,7 @@ struct Node<UnaryFunctionWrapper<UF>, Node<ChildArgs...>>
 	static double Eval (const Vec& values)
 	{
 		const auto child = Child_t::Eval (values);
-		return EvalUnary<UF> (child);
+		return EvalUnary (UnaryFunctionWrapper<UF> {}, child);
 	}
 };
 
@@ -78,7 +78,7 @@ struct Node<BinaryFunctionWrapper<BF>, Node<FirstChildArgs...>, Node<SecondChild
 		const auto left = Left_t::Eval (values);
 		const auto right = Right_t::Eval (values);
 
-		return EvalBinary<BF> (left, right);
+		return EvalBinary (BinaryFunctionWrapper<BF> {}, left, right);
 	}
 };
 

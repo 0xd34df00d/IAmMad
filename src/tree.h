@@ -38,29 +38,26 @@ std::string FunctionName (UnaryFunction uf)
 	}
 }
 
-template<UnaryFunction>
-double EvalUnary (double);
-
-template<>
-double EvalUnary<UnaryFunction::Sin> (double value)
+template<typename T>
+T EvalUnary (const Sin&, T value)
 {
 	return std::sin (value);
 }
 
-template<>
-double EvalUnary<UnaryFunction::Cos> (double value)
+template<typename T>
+T EvalUnary (const Cos&, T value)
 {
 	return std::cos (value);
 }
 
-template<>
-double EvalUnary<UnaryFunction::Ln> (double value)
+template<typename T>
+T EvalUnary (const Ln&, T value)
 {
 	return std::log (value);
 }
 
-template<>
-double EvalUnary<UnaryFunction::Neg> (double value)
+template<typename T>
+T EvalUnary (const Neg&, T value)
 {
 	return -value;
 }
@@ -101,23 +98,20 @@ std::string FunctionName (BinaryFunction bf)
 	}
 }
 
-template<BinaryFunction>
-double EvalBinary (double, double);
-
-template<>
-double EvalBinary<BinaryFunction::Add> (double left, double right)
+template<typename T>
+T EvalBinary (const Add&, T left, T right)
 {
 	return left + right;
 }
 
-template<>
-double EvalBinary<BinaryFunction::Mul> (double left, double right)
+template<typename T>
+T EvalBinary (const Mul&, T left, T right)
 {
 	return left * right;
 }
 
-template<>
-double EvalBinary<BinaryFunction::Div> (double left, double right)
+template<typename T>
+T EvalBinary (const Div&, T left, T right)
 {
 	return left / right;
 }
