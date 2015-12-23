@@ -15,6 +15,14 @@ enum class UnaryFunction
 	Neg
 };
 
+template<UnaryFunction UF>
+struct UnaryFunctionWrapper;
+
+using Sin = UnaryFunctionWrapper<UnaryFunction::Sin>;
+using Cos = UnaryFunctionWrapper<UnaryFunction::Cos>;
+using Neg = UnaryFunctionWrapper<UnaryFunction::Neg>;
+using Ln = UnaryFunctionWrapper<UnaryFunction::Ln>;
+
 std::string FunctionName (UnaryFunction uf)
 {
 	switch (uf)
@@ -63,6 +71,13 @@ enum class BinaryFunction
 	Mul,
 	Div
 };
+
+template<BinaryFunction BF>
+struct BinaryFunctionWrapper;
+
+using Add = BinaryFunctionWrapper<BinaryFunction::Add>;
+using Mul = BinaryFunctionWrapper<BinaryFunction::Mul>;
+using Div = BinaryFunctionWrapper<BinaryFunction::Div>;
 
 constexpr bool IsInfix (BinaryFunction bf)
 {

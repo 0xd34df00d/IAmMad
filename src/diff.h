@@ -8,21 +8,6 @@ constexpr size_t BuildIndex ()
 	return (Index << CHAR_BIT) + Family;
 }
 
-template<UnaryFunction UF>
-struct UnaryFunctionWrapper;
-
-using Sin = UnaryFunctionWrapper<UnaryFunction::Sin>;
-using Cos = UnaryFunctionWrapper<UnaryFunction::Cos>;
-using Neg = UnaryFunctionWrapper<UnaryFunction::Neg>;
-using Ln = UnaryFunctionWrapper<UnaryFunction::Ln>;
-
-template<BinaryFunction BF>
-struct BinaryFunctionWrapper;
-
-using Add = BinaryFunctionWrapper<BinaryFunction::Add>;
-using Mul = BinaryFunctionWrapper<BinaryFunction::Mul>;
-using Div = BinaryFunctionWrapper<BinaryFunction::Div>;
-
 template<typename NodeClass, typename... Args>
 struct Node;
 
