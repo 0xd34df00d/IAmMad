@@ -22,6 +22,9 @@ namespace Parse
 
 	Node<Number<1>> _1;
 
+	template<int Num>
+	Node<Number<Num>> Num {};
+
 	template<typename T1, typename T2>
 	Node<Add, T1, T2> operator+ (T1, T2);
 
