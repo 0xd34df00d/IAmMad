@@ -50,6 +50,12 @@ namespace Simplify
 		using Result_t = Node<Number<0>>;
 	};
 
+	template<>
+	struct Simplify<Node<Add, Node<Number<0>>, Node<Number<0>>>>
+	{
+		using Result_t = Node<Number<0>>;
+	};
+
 	template<typename Other>
 	struct Simplify<Node<Add, Other, Node<Number<0>>>>
 	{
