@@ -46,6 +46,12 @@ struct Node<UnaryFunctionWrapper<UF>, Node<ChildArgs...>>
 	}
 };
 
+template<typename T>
+struct IsBinaryNode : std::false_type {};
+
+template<BinaryFunction BF, typename First, typename Second>
+struct IsBinaryNode<Node<BinaryFunctionWrapper<BF>, First, Second>> : std::true_type {};
+
 template<BinaryFunction BF, typename... FirstChildArgs, typename... SecondChildArgs>
 struct Node<BinaryFunctionWrapper<BF>, Node<FirstChildArgs...>, Node<SecondChildArgs...>>
 {
@@ -57,9 +63,14 @@ struct Node<BinaryFunctionWrapper<BF>, Node<FirstChildArgs...>, Node<SecondChild
 
 	static std::string Print ()
 	{
-		const auto& firstArg = Left_t::Print ();
-		const auto& secondArg = Right_t::Print ();
+		auto firstArg = Left_t::Print ();
+		auto secondArg = Right_t::Print ();
 		const auto& func = FunctionName (BF);
+
+		if (IsBinaryNode<Left_t>::value)
+			firstArg = "(" + firstArg + ")";
+		if (IsBinaryNode<Right_t>::value)
+			secondArg = "(" + secondArg + ")";
 
 		return IsInfix (BF) ?
 				firstArg + " " + func + " " + secondArg :
