@@ -47,6 +47,12 @@ struct Node<UnaryFunctionWrapper<UF>, Node<ChildArgs...>>
 };
 
 template<typename T>
+struct IsNumberNode : std::false_type {};
+
+template<int N>
+struct IsNumberNode<Node<Number<N>>> : std::true_type {};
+
+template<typename T>
 struct IsBinaryNode : std::false_type {};
 
 template<BinaryFunction BF, typename First, typename Second>
