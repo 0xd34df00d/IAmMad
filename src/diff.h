@@ -114,6 +114,40 @@ struct VarDerivative<Expr, Node<Variable<Family, Index>>>
 template<typename Node, typename Var>
 using VarDerivative_t = typename VarDerivative<Node, Var>::Result_t;
 
+template<typename Var, typename Expr, typename Formula, typename Enable = void>
+struct ApplyDependency
+{
+	using Result_t = Formula;
+};
+
+template<typename Var, typename Expr, typename Formula>
+using ApplyDependency_t = typename ApplyDependency<Var, Expr, Formula>::Result_t;
+
+template<typename Var, typename Expr, UnaryFunction UF, typename Child>
+struct ApplyDependency<Var, Expr, Node<UnaryFunctionWrapper<UF>, Child>, std::enable_if_t<!std::is_same<Var, Node<UnaryFunctionWrapper<UF>, Child>>::value>>
+{
+	using Result_t = Node<
+				UnaryFunctionWrapper<UF>,
+				ApplyDependency_t<Var, Expr, Child>
+			>;
+};
+
+template<typename Var, typename Expr, BinaryFunction BF, typename FirstNode, typename SecondNode>
+struct ApplyDependency<Var, Expr, Node<BinaryFunctionWrapper<BF>, FirstNode, SecondNode>>
+{
+	using Result_t = Node<
+				BinaryFunctionWrapper<BF>,
+				ApplyDependency_t<Var, Expr, FirstNode>,
+				ApplyDependency_t<Var, Expr, SecondNode>
+			>;
+};
+
+template<typename Var, typename Expr>
+struct ApplyDependency<Var, Expr, Var>
+{
+	using Result_t = Expr;
+};
+
 template<>
 struct UnaryFunctionWrapper<UnaryFunction::Sin>
 {
