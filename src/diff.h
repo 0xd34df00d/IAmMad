@@ -2,12 +2,6 @@
 
 #include "tree.h"
 
-template<char Family, int Index>
-constexpr size_t BuildIndex ()
-{
-	return (Index << CHAR_BIT) + Family;
-}
-
 template<typename NodeClass, typename... Args>
 struct Node;
 
