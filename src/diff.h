@@ -129,7 +129,8 @@ template<typename Var, typename Expr, typename Formula>
 using ApplyDependency_t = typename ApplyDependency<Var, Expr, Formula>::Result_t;
 
 template<typename Var, typename Expr, UnaryFunction UF, typename Child>
-struct ApplyDependency<Var, Expr, Node<UnaryFunctionWrapper<UF>, Child>, std::enable_if_t<!std::is_same<Var, Node<UnaryFunctionWrapper<UF>, Child>>::value>>
+struct ApplyDependency<Var, Expr, Node<UnaryFunctionWrapper<UF>, Child>,
+		std::enable_if_t<!std::is_same<Var, Node<UnaryFunctionWrapper<UF>, Child>>::value>>
 {
 	using Result_t = Node<
 				UnaryFunctionWrapper<UF>,
@@ -138,7 +139,8 @@ struct ApplyDependency<Var, Expr, Node<UnaryFunctionWrapper<UF>, Child>, std::en
 };
 
 template<typename Var, typename Expr, BinaryFunction BF, typename FirstNode, typename SecondNode>
-struct ApplyDependency<Var, Expr, Node<BinaryFunctionWrapper<BF>, FirstNode, SecondNode>>
+struct ApplyDependency<Var, Expr, Node<BinaryFunctionWrapper<BF>, FirstNode, SecondNode>,
+		std::enable_if_t<!std::is_same<Var, Node<BinaryFunctionWrapper<BF>, FirstNode, SecondNode>>::value>>
 {
 	using Result_t = Node<
 				BinaryFunctionWrapper<BF>,
