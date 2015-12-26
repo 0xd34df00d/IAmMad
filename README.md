@@ -19,3 +19,11 @@ this structure using the standard rules taught in differential calculus 101.
 The library also supports performing basic expression simplification and tree
 rewriting, very basic, though. C++ is not Haskell, and doing pattern matching
 via templates specializations is painful.
+
+# Requirements
+
+Any decent compiler with C++14 support would do.
+
+The library is checked on:
+* clang 3.7
+* gcc 4.9.3
