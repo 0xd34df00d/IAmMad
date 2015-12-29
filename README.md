@@ -74,7 +74,7 @@ std::cout << CacheLog_t::Print () << std::endl;
 using CachedSq_t = ApplyDependency_t<decltype ((-k * (_1 + r0) - (k * (_1 - r0))) / ((_1 + r0) * (_1 + r0))), decltype (k * r0ppsq), CacheLog_t>;
 
 // And finally time for Eval()!
-const auto dr0 = Simplify_t<CachedRecip_t>::Eval (vec);
+const auto dr0 = Simplify_t<CachedSq_t>::Eval (vec);
 ```
 
 # Requirements
