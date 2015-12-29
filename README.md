@@ -22,7 +22,7 @@ via templates specializations is painful.
 
 # Example usage
 
-```
+```c++
 using namespace Parse;
 
 // Declare aliases for some of the predefined variables to match problem domain:
