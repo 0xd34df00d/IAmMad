@@ -33,9 +33,9 @@ auto r0 = x0;
 auto logr0 = x1;
 auto r0ppsq = x2;
 // note that logr0 = log(r0), so there is a dependency between the two. There
-// might be a good reason to have this, since computing logarithm is a very
-// expensive operation, and caching that may give a significant performance boost.
-// Same applies to r0ppsq.
+// might be a good reason for this, since logarithm is generally quite expensive,
+// and caching that may give a significant performance boost.
+// Same applies to r0ppsq, which we will see later.
 
 // Declare the expression we'd like to simplify:
 using Formula_t = decltype (k * (_1 - r0) / (_1 + r0) * (g0 / (alpha0 - logr0 / Num<300>) - _1));
@@ -46,6 +46,7 @@ const auto& vec = Params::BuildFunctor<float> (g0, someValue,
 		k, yetOneMoreValue,
 		r0, independentVariable,
 		logr0, logOfTheIndependentVariable);
+// The type (`float`) here will be used during evaluation of the expressions.
 
 // Evaluate the formula itself at the given point in the parameters space:
 const auto residual = LaserTypes::Formula_t::Eval (vec) - knownValue;
