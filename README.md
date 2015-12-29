@@ -41,7 +41,7 @@ auto r0ppsq = x2;
 using Formula_t = decltype (k * (_1 - r0) / (_1 + r0) * (g0 / (alpha0 - logr0 / Num<300>) - _1));
 
 // Create a parameters pack for the formula:
-const auto& vec = Params::BuildFunctor<DType_t> (g0, someValue,
+const auto& vec = Params::BuildFunctor<float> (g0, someValue,
 		alpha0, anotherValue,
 		k, yetOneMoreValue,
 		r0, independentVariable,
