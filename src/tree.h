@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+#include <cmath>
+
 template<int N>
 struct Number {};
 
