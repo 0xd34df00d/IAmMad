@@ -23,7 +23,7 @@ using Cos = UnaryFunctionWrapper<UnaryFunction::Cos>;
 using Neg = UnaryFunctionWrapper<UnaryFunction::Neg>;
 using Ln = UnaryFunctionWrapper<UnaryFunction::Ln>;
 
-std::string FunctionName (UnaryFunction uf)
+inline std::string FunctionName (UnaryFunction uf)
 {
 	switch (uf)
 	{
@@ -76,7 +76,7 @@ using Add = BinaryFunctionWrapper<BinaryFunction::Add>;
 using Mul = BinaryFunctionWrapper<BinaryFunction::Mul>;
 using Div = BinaryFunctionWrapper<BinaryFunction::Div>;
 
-constexpr bool IsInfix (BinaryFunction bf)
+inline constexpr bool IsInfix (BinaryFunction bf)
 {
 	switch (bf)
 	{
@@ -85,7 +85,7 @@ constexpr bool IsInfix (BinaryFunction bf)
 	}
 }
 
-std::string FunctionName (BinaryFunction bf)
+inline std::string FunctionName (BinaryFunction bf)
 {
 	switch (bf)
 	{
