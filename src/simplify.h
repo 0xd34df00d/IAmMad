@@ -80,6 +80,12 @@ namespace Simplify
 		using Result_t = Other;
 	};
 
+	template<int N>
+	struct Simplify<Node<Neg, Node<Number<N>>>>
+	{
+		using Result_t = Node<Number<-N>>;
+	};
+
 	template<UnaryFunction UF, typename Child>
 	struct Simplify<Node<UnaryFunctionWrapper<UF>, Child>>
 	{
