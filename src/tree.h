@@ -69,7 +69,8 @@ enum class BinaryFunction
 {
 	Add,
 	Mul,
-	Div
+	Div,
+	Pow
 };
 
 template<BinaryFunction BF>
@@ -78,6 +79,7 @@ struct BinaryFunctionWrapper;
 using Add = BinaryFunctionWrapper<BinaryFunction::Add>;
 using Mul = BinaryFunctionWrapper<BinaryFunction::Mul>;
 using Div = BinaryFunctionWrapper<BinaryFunction::Div>;
+using Pow = BinaryFunctionWrapper<BinaryFunction::Pow>;
 
 inline constexpr bool IsInfix (BinaryFunction bf)
 {
@@ -98,6 +100,8 @@ inline std::string FunctionName (BinaryFunction bf)
 		return "*";
 	case BinaryFunction::Div:
 		return "/";
+	case BinaryFunction::Pow:
+		return "^";
 	}
 }
 
@@ -117,4 +121,10 @@ template<typename T>
 T EvalBinary (const Div&, T left, T right)
 {
 	return left / right;
+}
+
+template<typename T>
+T EvalBinary (const Pow&, T left, T right)
+{
+	return std::pow (left, right);
 }

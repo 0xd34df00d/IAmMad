@@ -67,6 +67,9 @@ namespace Parse
 	template<typename T>
 	Node<Ln, std::decay_t<T>> Ln (T);
 
+	template<typename T>
+	Node<Pow, std::decay_t<T>, Node<Div, Node<Number<1>>, Node<Number<2>>>> Sqrt (T);
+
 	void TestParses ()
 	{
 		using Simplify::Simplify_t;

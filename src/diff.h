@@ -242,3 +242,13 @@ struct BinaryFunctionWrapper<BinaryFunction::Div>
 				>
 			>;
 };
+
+template<>
+struct BinaryFunctionWrapper<BinaryFunction::Pow>
+{
+	template<char Family, int Index, typename U, typename V>
+	using Derivative_t = Node<Mul,
+				Node<Pow, U, V>,
+				typename Node<Mul, V, Node<Ln, U>>::template Derivative_t<Family, Index>
+			>;
+};
