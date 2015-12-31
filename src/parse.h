@@ -5,7 +5,7 @@
 
 namespace Parse
 {
-	template<char Family, int Index>
+	template<char Family, int Index = 0>
 	Node<Variable<Family, Index>> Var {};
 
 	using X0 = Node<Variable<'x', 0>>;
