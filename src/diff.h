@@ -127,7 +127,7 @@ struct VarDerivative<Expr, Node<Variable<Family, Index>>>
 };
 
 template<typename Node, typename Var>
-using VarDerivative_t = typename VarDerivative<Node, Var>::Result_t;
+using VarDerivative_t = typename VarDerivative<Node, std::decay_t<Var>>::Result_t;
 
 template<typename Var, typename Expr, typename Formula, typename Enable = void>
 struct ApplyDependency
@@ -136,7 +136,7 @@ struct ApplyDependency
 };
 
 template<typename Var, typename Expr, typename Formula>
-using ApplyDependency_t = typename ApplyDependency<Var, Expr, Formula>::Result_t;
+using ApplyDependency_t = typename ApplyDependency<std::decay_t<Var>, std::decay_t<Expr>, Formula>::Result_t;
 
 template<typename Var, typename Expr, UnaryFunction UF, typename Child>
 struct ApplyDependency<Var, Expr, Node<UnaryFunctionWrapper<UF>, Child>,
