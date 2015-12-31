@@ -44,28 +44,28 @@ namespace Parse
 	Node<Number<Num>> Num {};
 
 	template<typename T1, typename T2>
-	Node<Add, T1, T2> operator+ (T1, T2);
+	Node<Add, std::decay_t<T1>, std::decay_t<T2>> operator+ (T1, T2);
 
 	template<typename T1, typename T2>
-	Node<Mul, T1, T2> operator* (T1, T2);
+	Node<Mul, std::decay_t<T1>, std::decay_t<T2>> operator* (T1, T2);
 
 	template<typename T1, typename T2>
-	Node<Div, T1, T2> operator/ (T1, T2);
+	Node<Div, std::decay_t<T1>, std::decay_t<T2>> operator/ (T1, T2);
 
 	template<typename T1, typename T2>
-	Node<Add, T1, Node<Neg, T2>> operator- (T1, T2);
+	Node<Add, std::decay_t<T1>, Node<Neg, std::decay_t<T2>>> operator- (T1, T2);
 
 	template<typename T>
-	Node<Neg, T> operator- (T);
+	Node<Neg, std::decay_t<T>> operator- (T);
 
 	template<typename T>
-	Node<Sin, T> Sin (T);
+	Node<Sin, std::decay_t<T>> Sin (T);
 
 	template<typename T>
-	Node<Cos, T> Cos (T);
+	Node<Cos, std::decay_t<T>> Cos (T);
 
 	template<typename T>
-	Node<Ln, T> Ln (T);
+	Node<Ln, std::decay_t<T>> Ln (T);
 
 	void TestParses ()
 	{
