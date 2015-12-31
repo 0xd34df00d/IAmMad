@@ -62,6 +62,12 @@ namespace Simplify
 		using Result_t = Node<Neg, Other>;
 	};
 
+	template<typename Other>
+	struct Simplify<Node<Div, Node<Number<0>>, Other>>
+	{
+		using Result_t = Node<Number<0>>;
+	};
+
 	template<>
 	struct Simplify<Node<Add, Node<Number<0>>, Node<Number<0>>>>
 	{
