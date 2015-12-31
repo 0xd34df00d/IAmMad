@@ -21,6 +21,8 @@ struct Node<Number<N>>
 	{
 		return N;
 	}
+
+	constexpr Node () {}
 };
 
 template<UnaryFunction UF, typename... ChildArgs>
@@ -111,6 +113,8 @@ struct Node<Variable<Family, Index>>
 	{
 		return values (Node {});
 	}
+
+	constexpr Node () {}
 };
 
 template<typename Node, typename Var>
