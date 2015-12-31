@@ -23,22 +23,22 @@ namespace Parse
 	using W2 = Node<Variable<'w', 2>>;
 	using W3 = Node<Variable<'w', 3>>;
 
-	X0 x0;
-	X1 x1;
-	X2 x2;
-	X3 x3;
+	constexpr X0 x0;
+	constexpr X1 x1;
+	constexpr X2 x2;
+	constexpr X3 x3;
 
-	Y0 y0;
-	Y1 y1;
-	Y2 y2;
-	Y3 y3;
+	constexpr Y0 y0;
+	constexpr Y1 y1;
+	constexpr Y2 y2;
+	constexpr Y3 y3;
 
-	W0 w0;
-	W1 w1;
-	W2 w2;
-	W3 w3;
+	constexpr W0 w0;
+	constexpr W1 w1;
+	constexpr W2 w2;
+	constexpr W3 w3;
 
-	Node<Number<1>> _1;
+	constexpr Node<Number<1>> _1;
 
 	template<int Num>
 	Node<Number<Num>> Num {};
