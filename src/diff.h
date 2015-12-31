@@ -5,7 +5,7 @@
 template<typename NodeClass, typename... Args>
 struct Node;
 
-template<int N>
+template<NumberType_t N>
 struct Node<Number<N>>
 {
 	template<char FPrime, int IPrime>
@@ -51,7 +51,7 @@ struct Node<UnaryFunctionWrapper<UF>, Node<ChildArgs...>>
 template<typename T>
 struct IsNumberNode : std::false_type {};
 
-template<int N>
+template<NumberType_t N>
 struct IsNumberNode<Node<Number<N>>> : std::true_type {};
 
 template<typename T>

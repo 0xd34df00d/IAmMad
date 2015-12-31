@@ -44,7 +44,7 @@ namespace Simplify
 		using Result_t = Node<Number<0>>;
 	};
 
-	template<int N, int M>
+	template<NumberType_t N, NumberType_t M>
 	struct Simplify<Node<Mul, Node<Number<N>>, Node<Number<M>>>>
 	{
 		using Result_t = Node<Number<N * M>>;
@@ -86,7 +86,7 @@ namespace Simplify
 		using Result_t = Other;
 	};
 
-	template<int N>
+	template<NumberType_t N>
 	struct Simplify<Node<Neg, Node<Number<N>>>>
 	{
 		using Result_t = Node<Number<-N>>;
@@ -113,16 +113,16 @@ namespace Simplify
 
 	namespace detail
 	{
-		template<typename T, int... Numbers>
+		template<typename T, NumberType_t... Numbers>
 		struct IsNumberValue : std::false_type {};
 
-		template<int N, int... Rest>
+		template<NumberType_t N, NumberType_t... Rest>
 		struct IsNumberValue<Node<Number<N>>, N, Rest...> : std::true_type {};
 
-		template<int K, int N, int... Rest>
+		template<NumberType_t K, NumberType_t N, NumberType_t... Rest>
 		struct IsNumberValue<Node<Number<K>>, N, Rest...> : IsNumberValue<Node<Number<K>>, Rest...> {};
 
-		template<int K>
+		template<NumberType_t K>
 		struct IsNumberValue<Node<Number<K>>> : std::false_type {};
 	}
 

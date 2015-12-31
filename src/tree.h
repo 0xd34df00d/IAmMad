@@ -3,12 +3,13 @@
 #include <string>
 #include <cmath>
 
-template<int N>
+using NumberType_t = long long;
+
+template<NumberType_t N>
 struct Number {};
 
 template<char Family, int Index>
 struct Variable {};
-
 
 enum class UnaryFunction
 {
