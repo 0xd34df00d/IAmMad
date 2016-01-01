@@ -39,6 +39,7 @@ namespace Parse
 	constexpr W3 w3;
 
 	constexpr Node<Number<1>> _1;
+	constexpr Node<Number<2>> _2;
 
 	template<int Num>
 	Node<Number<Num>> Num {};
