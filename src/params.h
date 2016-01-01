@@ -47,4 +47,16 @@ namespace Params
 		return detail::Augment ([val] (NodeType) { return val; },
 				BuildFunctor<ValueType> (std::forward<Tail> (tail)...));
 	}
+
+	template<typename Functor, typename NodeType>
+	auto AugmentFunctor (Functor&& f, NodeType, typename Functor::value_type val)
+	{
+		return detail::Augment ([val] (NodeType) { return val; }, std::forward<Functor> (f));
+	}
+
+	template<typename F1, typename F2>
+	auto UniteFunctors (F1&& f1, F2&& f2)
+	{
+		return detail::Augment (f1, f2);
+	}
 }
