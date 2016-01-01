@@ -20,7 +20,7 @@ namespace Params
 		};
 
 		template<typename F, typename S>
-		Map<F, S> Augment (F&& f, S&& s)
+		Map<std::decay_t<F>, std::decay_t<S>> Augment (F&& f, S&& s)
 		{
 			return { f, s };
 		}
