@@ -73,15 +73,4 @@ namespace Parse
 
 	template<typename T>
 	Node<Mul, std::decay_t<T>, std::decay_t<T>> operator^ (T, Node<Number<2>>);
-
-	void TestParses ()
-	{
-		using Simplify::Simplify_t;
-
-		std::cout << Simplify_t<decltype (x0 * y0)::Derivative_t<'x', 0>>::Print () << std::endl;
-		std::cout << Simplify_t<decltype (Sin (x0))::Derivative_t<'x', 0>>::Print () << std::endl;
-		std::cout << Simplify_t<decltype (Ln (x0))::Derivative_t<'x', 0>>::Print () << std::endl;
-		std::cout << Simplify_t<decltype (_1 / x0)::Derivative_t<'x', 0>>::Print () << std::endl;
-		std::cout << Simplify_t<decltype (Sin (x0) * Cos (y0))::Derivative_t<'x', 0>>::Print () << std::endl;
-	}
 }
