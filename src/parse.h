@@ -41,7 +41,7 @@ namespace Parse
 	constexpr Node<Number<1>> _1;
 	constexpr Node<Number<2>> _2;
 
-	template<int Num>
+	template<NumberType_t Num>
 	Node<Number<Num>> Num {};
 
 	template<typename T1, typename T2>
