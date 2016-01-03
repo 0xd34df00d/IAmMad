@@ -41,8 +41,8 @@ namespace Parse
 	constexpr Node<Number<1>> _1;
 	constexpr Node<Number<2>> _2;
 
-	template<NumberType_t Num>
-	Node<Number<Num>> Num {};
+	template<NumberType_t N>
+	Node<Number<N>> Num {};
 
 	template<typename T1, typename T2>
 	Node<Add, std::decay_t<T1>, std::decay_t<T2>> operator+ (T1, T2);
