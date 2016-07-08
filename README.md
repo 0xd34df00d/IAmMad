@@ -84,3 +84,22 @@ Any decent compiler with C++14 support would do.
 The library is checked on:
 * clang 3.7
 * gcc 4.9.3
+
+# Installation
+
+The library is header-only, so one could just copy `src/include/*.h` wherever
+they see fit.
+
+Another way is to use the provided CMake build system:
+
+```
+cd src/
+mkdir build
+cd build
+cmake ../
+make install
+```
+
+This would install the headers to `$CMAKE_INSTALL_PREFIX/include/iammad`.
+
+Alternatively, the prefix could be specified manually as `cmake ../ -DCMAKE_INSTALL_PREFIX=/foo/bar`.
