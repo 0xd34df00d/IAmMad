@@ -81,9 +81,9 @@ const auto dr0 = Simplify_t<CachedSq_t>::Eval (vec);
 
 Any decent compiler with C++14 support would do.
 
-The library is checked on:
+The library is tested on:
 * clang 3.7
-* gcc 4.9.3
+* gcc 5.1
 
 # Installation
 
