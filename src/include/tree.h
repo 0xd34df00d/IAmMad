@@ -2,6 +2,7 @@
 
 #include <string>
 #include <cmath>
+#include <cassert>
 
 using NumberType_t = long long;
 
@@ -40,6 +41,8 @@ inline std::string FunctionName (UnaryFunction uf)
 	case UnaryFunction::Neg:
 		return "-";
 	}
+
+	assert (0);
 }
 
 template<typename T>
@@ -104,6 +107,8 @@ inline std::string FunctionName (BinaryFunction bf)
 	case BinaryFunction::Pow:
 		return "^";
 	}
+
+	assert (0);
 }
 
 template<typename T>
