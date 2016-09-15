@@ -84,7 +84,7 @@ int main ()
 	using D_t = Simplify::Simplify_t<VarDerivative_t<Formula_t, decltype (Parse::x0)>>;
 
 	using namespace Parse;
-	if (CheckEqual<D_t, decltype (Parse::_1 / (Parse::_2 * Parse::Sqrt (Parse::x0)))> (Domain<double> { 1, 11 }))
+	if (!CheckEqual<D_t, decltype (Parse::_1 / (Parse::_2 * Parse::Sqrt (Parse::x0)))> (Domain<double> { 1, 11 }))
 		return 1;
 
 	return 0;
