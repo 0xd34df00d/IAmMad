@@ -19,12 +19,6 @@ namespace Params
 			}
 		};
 
-		template<typename F, typename S>
-		Map<std::decay_t<F>, std::decay_t<S>> AugmentTwo (F&& f, S&& s)
-		{
-			return { f, s };
-		}
-
 		template<typename F>
 		auto Augment (F&& f)
 		{
@@ -34,13 +28,7 @@ namespace Params
 		template<typename F, typename S>
 		auto Augment (F&& f, S&& s)
 		{
-			return AugmentTwo (std::forward<F> (f), std::forward<S> (s));
-		}
-
-		template<typename F, typename S, typename... Rest>
-		auto Augment (F&& f, S&& s, Rest&&... rest)
-		{
-			return AugmentImpl (AugmentTwo (std::forward<F> (f), std::forward<S> (s)), std::forward<Rest> (rest)...);
+			return Map<std::decay_t<F>, std::decay_t<S>> { f, s };
 		}
 	}
 
