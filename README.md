@@ -1,4 +1,4 @@
-IAmMad - Inlining Automagical Metaprogramming Analytical Differentiation.
+IAmMad — Inlining Automagical Metaprogramming Analytical Differentiation.
 
 Cuz I'm too lazy to write derivatives in my C++ code by hand.
 
@@ -49,7 +49,7 @@ const auto& vec = Params::BuildFunctor<float> (g0, someValue,
 // The type (`float`) here will be used during evaluation of the expressions.
 
 // Evaluate the formula itself at the given point in the parameters space:
-const auto residual = LaserTypes::Formula_t::Eval (vec) - knownValue;
+const auto residual = Formula_t::Eval (vec) - knownValue;
 
 // Take, simplify and evaluate derivatives w.r.t. model parameters:
 using Simplify::Simplify_t;
